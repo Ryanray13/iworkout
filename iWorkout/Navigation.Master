@@ -1,0 +1,66 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Navigation.master.cs" Inherits="iWorkout.Navigation" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="Style/Site.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server"> 
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%-- site title part: menu bar --%>
+        <header>
+            <div style="background-color: azure; height: 54px;">
+                <div class="float-left">
+                    <h2>MiWorkout Management Studio</h2>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        <asp:LoginView ID="LoginView1" runat="server">
+                            <AnonymousTemplate>
+                                Hi, User <a runat="server" href="~/Login.aspx">Login Here</a>
+                            </AnonymousTemplate>
+                            <LoggedInTemplate>
+                                <asp:LinkButton ID="PortalLink" runat="server" OnClick="PortalLink_Click">Hi, <%: Context.User.Identity.Name  %></asp:LinkButton>
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/"
+                                    LogoutText="Log Out" OnLoggingOut="LoginStatus1_LoggingOut" />
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <!-- Change Navigation URL later -->
+                            <li><a runat="server" href="~/">Home</a></li>
+                            <li><a runat="server" href="~/Contact.aspx">Contact Us</a></li>
+                            <li><a runat="server" href="~/FAQ.aspx">FAQ</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+
+        <div id="body">
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            </section>
+        </div>
+
+        <!-- footer part -->
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                </div>
+                <div class="float-right">
+                    <!-- <p>&copy; <%: DateTime.Now.Year %> - iWorkout ASP.NET Application</p> -->
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
+

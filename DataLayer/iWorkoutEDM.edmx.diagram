@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6eba362a66ea49c180caa0aaef0a6bb3" Name="Diagram1" ZoomLevel="95" >
+        <EntityTypeShape EntityType="iWorkoutEDM.User" Width="1.5" PointX="2.125" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iWorkoutEDM.UserType" Width="1.5" PointX="2.5" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="iWorkoutEDM.UserTypeUser" />
+        <EntityTypeShape EntityType="iWorkoutEDM.CustomerRelationship" Width="1.5" PointX="4.625" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="iWorkoutEDM.UserCustomerRelationship" />
+        <AssociationConnector Association="iWorkoutEDM.UserCustomerRelationship1" />
+        <EntityTypeShape EntityType="iWorkoutEDM.Contract" Width="1.5" PointX="6.75" PointY="0.5" />
+        <AssociationConnector Association="iWorkoutEDM.CustomerRelationshipContract" />
+        <EntityTypeShape EntityType="iWorkoutEDM.Program" Width="1.5" PointX="11.375" PointY="3.375" />
+        <EntityTypeShape EntityType="iWorkoutEDM.ProgramProfile" Width="1.5" PointX="11.375" PointY="6" />
+        <AssociationConnector Association="iWorkoutEDM.ProgramProgramProfile" />
+        <EntityTypeShape EntityType="iWorkoutEDM.ProfileDetail" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="iWorkoutEDM.Activity" Width="1.5" PointX="6.5" PointY="8.75" />
+        <EntityTypeShape EntityType="iWorkoutEDM.ActivityType" Width="1.5" PointX="9.5" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="iWorkoutEDM.ActivityTypeActivity" />
+        <EntityTypeShape EntityType="iWorkoutEDM.ActivityLog" Width="1.5" PointX="8.75" PointY="5.75" />
+        <AssociationConnector Association="iWorkoutEDM.ProfileDetailProgramProfile" />
+        <AssociationConnector Association="iWorkoutEDM.UserProgram" />
+        <EntityTypeShape EntityType="iWorkoutEDM.ProfileActivity" Width="1.5" PointX="6.5" PointY="5.875" />
+        <AssociationConnector Association="iWorkoutEDM.ActivityProfileActivity" />
+        <AssociationConnector Association="iWorkoutEDM.ProfileDetailProfileActivity" />
+        <AssociationConnector Association="iWorkoutEDM.ProfileActivityActivityLog" />
+        <EntityTypeShape EntityType="iWorkoutEDM.Subscription" Width="1.5" PointX="6.375" PointY="3.375" />
+        <AssociationConnector Association="iWorkoutEDM.ProgramSubscription" />
+        <AssociationConnector Association="iWorkoutEDM.UserSubscription" />
+        <AssociationConnector Association="iWorkoutEDM.SubscriptionActivityLog" />
+        <AssociationConnector Association="iWorkoutEDM.UserProfileDetail" />
+        <AssociationConnector Association="iWorkoutEDM.UserActivity" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

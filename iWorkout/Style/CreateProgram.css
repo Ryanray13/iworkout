@@ -1,0 +1,9 @@
+﻿body {
+}
+.dayPanel{
+    display:inline-block
+}
+
+.checkBoxListItem label {
+    display:inline-block;
+}

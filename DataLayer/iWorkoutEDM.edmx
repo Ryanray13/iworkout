@@ -1,0 +1,942 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="iWorkoutEDM.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="iWorkoutEDMStoreContainer">
+    <EntitySet Name="Users" EntityType="iWorkoutEDM.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserTypes" EntityType="iWorkoutEDM.Store.UserTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomerRelationships" EntityType="iWorkoutEDM.Store.CustomerRelationships" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contracts" EntityType="iWorkoutEDM.Store.Contracts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Programs" EntityType="iWorkoutEDM.Store.Programs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProgramProfiles" EntityType="iWorkoutEDM.Store.ProgramProfiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfileDetails" EntityType="iWorkoutEDM.Store.ProfileDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Activities" EntityType="iWorkoutEDM.Store.Activities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActivityTypes" EntityType="iWorkoutEDM.Store.ActivityTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActivityLogs" EntityType="iWorkoutEDM.Store.ActivityLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfileActivities" EntityType="iWorkoutEDM.Store.ProfileActivities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subscriptions" EntityType="iWorkoutEDM.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserTypeUser" Association="iWorkoutEDM.Store.UserTypeUser">
+      <End Role="UserType" EntitySet="UserTypes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="UserCustomerRelationship" Association="iWorkoutEDM.Store.UserCustomerRelationship">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CustomerRelationship" EntitySet="CustomerRelationships" />
+    </AssociationSet>
+    <AssociationSet Name="UserCustomerRelationship1" Association="iWorkoutEDM.Store.UserCustomerRelationship1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CustomerRelationship" EntitySet="CustomerRelationships" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerRelationshipContract" Association="iWorkoutEDM.Store.CustomerRelationshipContract">
+      <End Role="CustomerRelationship" EntitySet="CustomerRelationships" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="ProgramProgramProfile" Association="iWorkoutEDM.Store.ProgramProgramProfile">
+      <End Role="Program" EntitySet="Programs" />
+      <End Role="ProgramProfile" EntitySet="ProgramProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="ActivityTypeActivity" Association="iWorkoutEDM.Store.ActivityTypeActivity">
+      <End Role="ActivityType" EntitySet="ActivityTypes" />
+      <End Role="Activity" EntitySet="Activities" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileDetailProgramProfile" Association="iWorkoutEDM.Store.ProfileDetailProgramProfile">
+      <End Role="ProfileDetail" EntitySet="ProfileDetails" />
+      <End Role="ProgramProfile" EntitySet="ProgramProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="UserProgram" Association="iWorkoutEDM.Store.UserProgram">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Program" EntitySet="Programs" />
+    </AssociationSet>
+    <AssociationSet Name="ActivityProfileActivity" Association="iWorkoutEDM.Store.ActivityProfileActivity">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="ProfileActivity" EntitySet="ProfileActivities" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileDetailProfileActivity" Association="iWorkoutEDM.Store.ProfileDetailProfileActivity">
+      <End Role="ProfileDetail" EntitySet="ProfileDetails" />
+      <End Role="ProfileActivity" EntitySet="ProfileActivities" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileActivityActivityLog" Association="iWorkoutEDM.Store.ProfileActivityActivityLog">
+      <End Role="ProfileActivity" EntitySet="ProfileActivities" />
+      <End Role="ActivityLog" EntitySet="ActivityLogs" />
+    </AssociationSet>
+    <AssociationSet Name="ProgramSubscription" Association="iWorkoutEDM.Store.ProgramSubscription">
+      <End Role="Program" EntitySet="Programs" />
+      <End Role="Subscription" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="UserSubscription" Association="iWorkoutEDM.Store.UserSubscription">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Subscription" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="SubscriptionActivityLog" Association="iWorkoutEDM.Store.SubscriptionActivityLog">
+      <End Role="Subscription" EntitySet="Subscriptions" />
+      <End Role="ActivityLog" EntitySet="ActivityLogs" />
+    </AssociationSet>
+    <AssociationSet Name="UserProfileDetail" Association="iWorkoutEDM.Store.UserProfileDetail">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ProfileDetail" EntitySet="ProfileDetails" />
+    </AssociationSet>
+    <AssociationSet Name="UserActivity" Association="iWorkoutEDM.Store.UserActivity">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Activity" EntitySet="Activities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Handle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserTypeKey_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerRelationships">
+    <Key>
+      <PropertyRef Name="ClientKey" />
+      <PropertyRef Name="CoachKey" />
+    </Key>
+    <Property Name="SelfCoached" Type="bit" Nullable="false" />
+    <Property Name="ClientKey" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CoachKey" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contracts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientKey" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CoachKey" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Programs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserOwnerKey_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProgramProfiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProgramKey_Id" Type="int" Nullable="false" />
+    <Property Name="ProfileDetailKey_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="true" />
+    <Property Name="CycleLength" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="CycleRepeatCount" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="UserOwnerKey_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Activities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActivityTypeKey_Id" Type="int" Nullable="false" />
+    <Property Name="UserOwnerKey_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActivityTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActivityLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Accomplished" Type="bit" Nullable="false" />
+    <Property Name="Memo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ProfileActivityKey_Id" Type="int" Nullable="false" />
+    <Property Name="SubscriptionKey_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileActivities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ActivityKey_Id" Type="int" Nullable="false" />
+    <Property Name="ProfileDetailKey_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subscriptions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="ProgramKey_Id" Type="int" Nullable="false" />
+    <Property Name="UserClientKey_Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="UserTypeUser">
+    <End Role="UserType" Type="iWorkoutEDM.Store.UserTypes" Multiplicity="1" />
+    <End Role="User" Type="iWorkoutEDM.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserTypeKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCustomerRelationship">
+    <End Role="User" Type="iWorkoutEDM.Store.Users" Multiplicity="1" />
+    <End Role="CustomerRelationship" Type="iWorkoutEDM.Store.CustomerRelationships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerRelationship">
+        <PropertyRef Name="ClientKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCustomerRelationship1">
+    <End Role="User" Type="iWorkoutEDM.Store.Users" Multiplicity="1" />
+    <End Role="CustomerRelationship" Type="iWorkoutEDM.Store.CustomerRelationships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerRelationship">
+        <PropertyRef Name="CoachKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerRelationshipContract">
+    <End Role="CustomerRelationship" Type="iWorkoutEDM.Store.CustomerRelationships" Multiplicity="1" />
+    <End Role="Contract" Type="iWorkoutEDM.Store.Contracts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerRelationship">
+        <PropertyRef Name="ClientKey" />
+        <PropertyRef Name="CoachKey" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="ClientKey" />
+        <PropertyRef Name="CoachKey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProgramProgramProfile">
+    <End Role="Program" Type="iWorkoutEDM.Store.Programs" Multiplicity="1" />
+    <End Role="ProgramProfile" Type="iWorkoutEDM.Store.ProgramProfiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Program">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProgramProfile">
+        <PropertyRef Name="ProgramKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActivityTypeActivity">
+    <End Role="ActivityType" Type="iWorkoutEDM.Store.ActivityTypes" Multiplicity="1" />
+    <End Role="Activity" Type="iWorkoutEDM.Store.Activities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActivityType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="ActivityTypeKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileDetailProgramProfile">
+    <End Role="ProfileDetail" Type="iWorkoutEDM.Store.ProfileDetails" Multiplicity="1" />
+    <End Role="ProgramProfile" Type="iWorkoutEDM.Store.ProgramProfiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProgramProfile">
+        <PropertyRef Name="ProfileDetailKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserProgram">
+    <End Role="User" Type="iWorkoutEDM.Store.Users" Multiplicity="1" />
+    <End Role="Program" Type="iWorkoutEDM.Store.Programs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Program">
+        <PropertyRef Name="UserOwnerKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActivityProfileActivity">
+    <End Role="Activity" Type="iWorkoutEDM.Store.Activities" Multiplicity="1" />
+    <End Role="ProfileActivity" Type="iWorkoutEDM.Store.ProfileActivities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileActivity">
+        <PropertyRef Name="ActivityKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileDetailProfileActivity">
+    <End Role="ProfileDetail" Type="iWorkoutEDM.Store.ProfileDetails" Multiplicity="1" />
+    <End Role="ProfileActivity" Type="iWorkoutEDM.Store.ProfileActivities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileActivity">
+        <PropertyRef Name="ProfileDetailKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileActivityActivityLog">
+    <End Role="ProfileActivity" Type="iWorkoutEDM.Store.ProfileActivities" Multiplicity="1" />
+    <End Role="ActivityLog" Type="iWorkoutEDM.Store.ActivityLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileActivity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActivityLog">
+        <PropertyRef Name="ProfileActivityKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProgramSubscription">
+    <End Role="Program" Type="iWorkoutEDM.Store.Programs" Multiplicity="1" />
+    <End Role="Subscription" Type="iWorkoutEDM.Store.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Program">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="ProgramKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSubscription">
+    <End Role="User" Type="iWorkoutEDM.Store.Users" Multiplicity="1" />
+    <End Role="Subscription" Type="iWorkoutEDM.Store.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="UserClientKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubscriptionActivityLog">
+    <End Role="Subscription" Type="iWorkoutEDM.Store.Subscriptions" Multiplicity="1" />
+    <End Role="ActivityLog" Type="iWorkoutEDM.Store.ActivityLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscription">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActivityLog">
+        <PropertyRef Name="SubscriptionKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserProfileDetail">
+    <End Role="User" Type="iWorkoutEDM.Store.Users" Multiplicity="1" />
+    <End Role="ProfileDetail" Type="iWorkoutEDM.Store.ProfileDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileDetail">
+        <PropertyRef Name="UserOwnerKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserActivity">
+    <End Role="User" Type="iWorkoutEDM.Store.Users" Multiplicity="1" />
+    <End Role="Activity" Type="iWorkoutEDM.Store.Activities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="UserOwnerKey_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="iWorkoutEDM" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="iWorkoutEDMContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="iWorkoutEDM.User" />
+          <EntitySet Name="UserTypes" EntityType="iWorkoutEDM.UserType" />
+          <AssociationSet Name="UserTypeUser" Association="iWorkoutEDM.UserTypeUser">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="CustomerRelationships" EntityType="iWorkoutEDM.CustomerRelationship" />
+          <AssociationSet Name="UserCustomerRelationship" Association="iWorkoutEDM.UserCustomerRelationship">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CustomerRelationship" EntitySet="CustomerRelationships" />
+          </AssociationSet>
+          <AssociationSet Name="UserCustomerRelationship1" Association="iWorkoutEDM.UserCustomerRelationship1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CustomerRelationship" EntitySet="CustomerRelationships" />
+          </AssociationSet>
+          <EntitySet Name="Contracts" EntityType="iWorkoutEDM.Contract" />
+          <AssociationSet Name="CustomerRelationshipContract" Association="iWorkoutEDM.CustomerRelationshipContract">
+            <End Role="CustomerRelationship" EntitySet="CustomerRelationships" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <EntitySet Name="Programs" EntityType="iWorkoutEDM.Program" />
+          <EntitySet Name="ProgramProfiles" EntityType="iWorkoutEDM.ProgramProfile" />
+          <AssociationSet Name="ProgramProgramProfile" Association="iWorkoutEDM.ProgramProgramProfile">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="ProgramProfile" EntitySet="ProgramProfiles" />
+          </AssociationSet>
+          <EntitySet Name="ProfileDetails" EntityType="iWorkoutEDM.ProfileDetail" />
+          <EntitySet Name="Activities" EntityType="iWorkoutEDM.Activity" />
+          <EntitySet Name="ActivityTypes" EntityType="iWorkoutEDM.ActivityType" />
+          <AssociationSet Name="ActivityTypeActivity" Association="iWorkoutEDM.ActivityTypeActivity">
+            <End Role="ActivityType" EntitySet="ActivityTypes" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <EntitySet Name="ActivityLogs" EntityType="iWorkoutEDM.ActivityLog" />
+          <AssociationSet Name="ProfileDetailProgramProfile" Association="iWorkoutEDM.ProfileDetailProgramProfile">
+            <End Role="ProfileDetail" EntitySet="ProfileDetails" />
+            <End Role="ProgramProfile" EntitySet="ProgramProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="UserProgram" Association="iWorkoutEDM.UserProgram">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
+          <EntitySet Name="ProfileActivities" EntityType="iWorkoutEDM.ProfileActivity" />
+          <AssociationSet Name="ActivityProfileActivity" Association="iWorkoutEDM.ActivityProfileActivity">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="ProfileActivity" EntitySet="ProfileActivities" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileDetailProfileActivity" Association="iWorkoutEDM.ProfileDetailProfileActivity">
+            <End Role="ProfileDetail" EntitySet="ProfileDetails" />
+            <End Role="ProfileActivity" EntitySet="ProfileActivities" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileActivityActivityLog" Association="iWorkoutEDM.ProfileActivityActivityLog">
+            <End Role="ProfileActivity" EntitySet="ProfileActivities" />
+            <End Role="ActivityLog" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <EntitySet Name="Subscriptions" EntityType="iWorkoutEDM.Subscription" />
+          <AssociationSet Name="ProgramSubscription" Association="iWorkoutEDM.ProgramSubscription">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="UserSubscription" Association="iWorkoutEDM.UserSubscription">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="SubscriptionActivityLog" Association="iWorkoutEDM.SubscriptionActivityLog">
+            <End Role="Subscription" EntitySet="Subscriptions" />
+            <End Role="ActivityLog" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="UserProfileDetail" Association="iWorkoutEDM.UserProfileDetail">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ProfileDetail" EntitySet="ProfileDetails" />
+          </AssociationSet>
+          <AssociationSet Name="UserActivity" Association="iWorkoutEDM.UserActivity">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Handle" Type="String" Nullable="false" />
+          <NavigationProperty Name="UserTypeKey" Relationship="iWorkoutEDM.UserTypeUser" FromRole="User" ToRole="UserType" />
+          <NavigationProperty Name="CustomerRelationships" Relationship="iWorkoutEDM.UserCustomerRelationship" FromRole="User" ToRole="CustomerRelationship" />
+          <NavigationProperty Name="CustomerRelationships1" Relationship="iWorkoutEDM.UserCustomerRelationship1" FromRole="User" ToRole="CustomerRelationship" />
+          <NavigationProperty Name="Programs" Relationship="iWorkoutEDM.UserProgram" FromRole="User" ToRole="Program" />
+          <NavigationProperty Name="Subscriptions" Relationship="iWorkoutEDM.UserSubscription" FromRole="User" ToRole="Subscription" />
+          <NavigationProperty Name="ProfileDetails" Relationship="iWorkoutEDM.UserProfileDetail" FromRole="User" ToRole="ProfileDetail" />
+          <NavigationProperty Name="Activities" Relationship="iWorkoutEDM.UserActivity" FromRole="User" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="iWorkoutEDM.UserTypeUser" FromRole="UserType" ToRole="User" />
+        </EntityType>
+        <Association Name="UserTypeUser">
+          <End Type="iWorkoutEDM.UserType" Role="UserType" Multiplicity="1" />
+          <End Type="iWorkoutEDM.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CustomerRelationship">
+          <Key>
+            <PropertyRef Name="ClientKey" />
+            <PropertyRef Name="CoachKey" />
+          </Key>
+          <Property Name="SelfCoached" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="UserClientKey" Relationship="iWorkoutEDM.UserCustomerRelationship" FromRole="CustomerRelationship" ToRole="User" />
+          <NavigationProperty Name="UserCoachKey" Relationship="iWorkoutEDM.UserCustomerRelationship1" FromRole="CustomerRelationship" ToRole="User" />
+          <Property Name="ClientKey" Type="Guid" Nullable="false" />
+          <Property Name="CoachKey" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Contracts" Relationship="iWorkoutEDM.CustomerRelationshipContract" FromRole="CustomerRelationship" ToRole="Contract" />
+        </EntityType>
+        <Association Name="UserCustomerRelationship">
+          <End Type="iWorkoutEDM.User" Role="User" Multiplicity="1" />
+          <End Type="iWorkoutEDM.CustomerRelationship" Role="CustomerRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerRelationship">
+              <PropertyRef Name="ClientKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserCustomerRelationship1">
+          <End Type="iWorkoutEDM.User" Role="User" Multiplicity="1" />
+          <End Type="iWorkoutEDM.CustomerRelationship" Role="CustomerRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerRelationship">
+              <PropertyRef Name="CoachKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CustomerRelationship" Relationship="iWorkoutEDM.CustomerRelationshipContract" FromRole="Contract" ToRole="CustomerRelationship" />
+          <Property Name="ClientKey" Type="Guid" Nullable="false" />
+          <Property Name="CoachKey" Type="Guid" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="CustomerRelationshipContract">
+          <End Type="iWorkoutEDM.CustomerRelationship" Role="CustomerRelationship" Multiplicity="1" />
+          <End Type="iWorkoutEDM.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerRelationship">
+              <PropertyRef Name="ClientKey" />
+              <PropertyRef Name="CoachKey" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="ClientKey" />
+              <PropertyRef Name="CoachKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProgramProfiles" Relationship="iWorkoutEDM.ProgramProgramProfile" FromRole="Program" ToRole="ProgramProfile" />
+          <NavigationProperty Name="UserOwnerKey" Relationship="iWorkoutEDM.UserProgram" FromRole="Program" ToRole="User" >
+            <Documentation>
+              <Summary>Owner of the Program</Summary>
+            </Documentation>
+          </NavigationProperty>
+          <NavigationProperty Name="Subscriptions" Relationship="iWorkoutEDM.ProgramSubscription" FromRole="Program" ToRole="Subscription" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProgramProfile">
+          <Documentation>
+            <LongDescription>ForcedFeedback</LongDescription>
+          </Documentation>
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProgramKey" Relationship="iWorkoutEDM.ProgramProgramProfile" FromRole="ProgramProfile" ToRole="Program" />
+          <NavigationProperty Name="ProfileDetailKey" Relationship="iWorkoutEDM.ProfileDetailProgramProfile" FromRole="ProgramProfile" ToRole="ProfileDetail" />
+        </EntityType>
+        <Association Name="ProgramProgramProfile">
+          <End Type="iWorkoutEDM.Program" Role="Program" Multiplicity="1" />
+          <End Type="iWorkoutEDM.ProgramProfile" Role="ProgramProfile" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ProfileDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Priority" Type="Int32" Nullable="true" >
+            <Documentation>
+              <LongDescription>Minus 1 indicates non-terminal profile</LongDescription>
+            </Documentation>
+          </Property>
+          <NavigationProperty Name="ProgramProfiles" Relationship="iWorkoutEDM.ProfileDetailProgramProfile" FromRole="ProfileDetail" ToRole="ProgramProfile" />
+          <NavigationProperty Name="ProfileActivities" Relationship="iWorkoutEDM.ProfileDetailProfileActivity" FromRole="ProfileDetail" ToRole="ProfileActivity" />
+          <Property Name="CycleLength" Type="Int32" Nullable="false" DefaultValue="1" >
+            <Documentation>
+              <LongDescription>This field is inferred from max activity priority plus 1</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="CycleRepeatCount" Type="Int32" Nullable="false" DefaultValue="1" />
+          <NavigationProperty Name="UserOwnerKey" Relationship="iWorkoutEDM.UserProfileDetail" FromRole="ProfileDetail" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ActivityTypeKey" Relationship="iWorkoutEDM.ActivityTypeActivity" FromRole="Activity" ToRole="ActivityType" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="ProfileActivities" Relationship="iWorkoutEDM.ActivityProfileActivity" FromRole="Activity" ToRole="ProfileActivity" />
+          <NavigationProperty Name="UserOwnerKey" Relationship="iWorkoutEDM.UserActivity" FromRole="Activity" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Activities" Relationship="iWorkoutEDM.ActivityTypeActivity" FromRole="ActivityType" ToRole="Activity" />
+        </EntityType>
+        <Association Name="ActivityTypeActivity">
+          <End Type="iWorkoutEDM.ActivityType" Role="ActivityType" Multiplicity="1" />
+          <End Type="iWorkoutEDM.Activity" Role="Activity" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProfileActivityKey" Relationship="iWorkoutEDM.ProfileActivityActivityLog" FromRole="ActivityLog" ToRole="ProfileActivity" />
+          <NavigationProperty Name="SubscriptionKey" Relationship="iWorkoutEDM.SubscriptionActivityLog" FromRole="ActivityLog" ToRole="Subscription" />
+          <Property Name="Accomplished" Type="Boolean" Nullable="false" />
+          <Property Name="Memo" Type="String" Nullable="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="ProfileDetailProgramProfile">
+          <End Type="iWorkoutEDM.ProfileDetail" Role="ProfileDetail" Multiplicity="1" />
+          <End Type="iWorkoutEDM.ProgramProfile" Role="ProgramProfile" Multiplicity="*" />
+        </Association>
+        <Association Name="UserProgram">
+          <End Type="iWorkoutEDM.User" Role="User" Multiplicity="1" />
+          <End Type="iWorkoutEDM.Program" Role="Program" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ProfileActivity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ActivityKey" Relationship="iWorkoutEDM.ActivityProfileActivity" FromRole="ProfileActivity" ToRole="Activity" />
+          <NavigationProperty Name="ProfileDetailKey" Relationship="iWorkoutEDM.ProfileDetailProfileActivity" FromRole="ProfileActivity" ToRole="ProfileDetail" />
+          <Property Name="Priority" Type="Int32" Nullable="false" >
+            <Documentation>
+              <Summary>negative one indicates repeating activity</Summary>
+            </Documentation>
+          </Property>
+          <NavigationProperty Name="ActivityLogs" Relationship="iWorkoutEDM.ProfileActivityActivityLog" FromRole="ProfileActivity" ToRole="ActivityLog" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="ActivityProfileActivity">
+          <End Type="iWorkoutEDM.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="iWorkoutEDM.ProfileActivity" Role="ProfileActivity" Multiplicity="*" />
+        </Association>
+        <Association Name="ProfileDetailProfileActivity">
+          <End Type="iWorkoutEDM.ProfileDetail" Role="ProfileDetail" Multiplicity="1" />
+          <End Type="iWorkoutEDM.ProfileActivity" Role="ProfileActivity" Multiplicity="*" />
+        </Association>
+        <Association Name="ProfileActivityActivityLog">
+          <End Type="iWorkoutEDM.ProfileActivity" Role="ProfileActivity" Multiplicity="1" />
+          <End Type="iWorkoutEDM.ActivityLog" Role="ActivityLog" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProgramKey" Relationship="iWorkoutEDM.ProgramSubscription" FromRole="Subscription" ToRole="Program" />
+          <NavigationProperty Name="UserClientKey" Relationship="iWorkoutEDM.UserSubscription" FromRole="Subscription" ToRole="User" >
+            <Documentation>
+              <Summary>Can only be Client</Summary>
+            </Documentation>
+          </NavigationProperty>
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ActivityLogs" Relationship="iWorkoutEDM.SubscriptionActivityLog" FromRole="Subscription" ToRole="ActivityLog" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="ProgramSubscription">
+          <End Type="iWorkoutEDM.Program" Role="Program" Multiplicity="1" />
+          <End Type="iWorkoutEDM.Subscription" Role="Subscription" Multiplicity="*" />
+        </Association>
+        <Association Name="UserSubscription">
+          <End Type="iWorkoutEDM.User" Role="User" Multiplicity="1" />
+          <End Type="iWorkoutEDM.Subscription" Role="Subscription" Multiplicity="*" />
+        </Association>
+        <Association Name="SubscriptionActivityLog">
+          <End Type="iWorkoutEDM.Subscription" Role="Subscription" Multiplicity="1" />
+          <End Type="iWorkoutEDM.ActivityLog" Role="ActivityLog" Multiplicity="*" />
+        </Association>
+        <Association Name="UserProfileDetail">
+          <End Type="iWorkoutEDM.User" Role="User" Multiplicity="1" />
+          <End Type="iWorkoutEDM.ProfileDetail" Role="ProfileDetail" Multiplicity="*" />
+        </Association>
+        <Association Name="UserActivity">
+          <End Type="iWorkoutEDM.User" Role="User" Multiplicity="1" />
+          <End Type="iWorkoutEDM.Activity" Role="Activity" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="iWorkoutEDMStoreContainer" CdmEntityContainer="iWorkoutEDMContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Handle" ColumnName="Handle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.UserType)">
+        <MappingFragment StoreEntitySet="UserTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerRelationships">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.CustomerRelationship)">
+        <MappingFragment StoreEntitySet="CustomerRelationships">
+          <ScalarProperty Name="ClientKey" ColumnName="ClientKey" />
+          <ScalarProperty Name="CoachKey" ColumnName="CoachKey" />
+          <ScalarProperty Name="SelfCoached" ColumnName="SelfCoached" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contracts">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.Contract)">
+        <MappingFragment StoreEntitySet="Contracts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClientKey" ColumnName="ClientKey" />
+          <ScalarProperty Name="CoachKey" ColumnName="CoachKey" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.Program)">
+        <MappingFragment StoreEntitySet="Programs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramProfiles">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.ProgramProfile)">
+        <MappingFragment StoreEntitySet="ProgramProfiles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.ProfileDetail)">
+        <MappingFragment StoreEntitySet="ProfileDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="CycleLength" ColumnName="CycleLength" />
+          <ScalarProperty Name="CycleRepeatCount" ColumnName="CycleRepeatCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Activities">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.Activity)">
+        <MappingFragment StoreEntitySet="Activities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActivityTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.ActivityType)">
+        <MappingFragment StoreEntitySet="ActivityTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActivityLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.ActivityLog)">
+        <MappingFragment StoreEntitySet="ActivityLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Accomplished" ColumnName="Accomplished" />
+          <ScalarProperty Name="Memo" ColumnName="Memo" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileActivities">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.ProfileActivity)">
+        <MappingFragment StoreEntitySet="ProfileActivities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscriptions">
+      <EntityTypeMapping TypeName="IsTypeOf(iWorkoutEDM.Subscription)">
+        <MappingFragment StoreEntitySet="Subscriptions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserTypeUser" TypeName="iWorkoutEDM.UserTypeUser" StoreEntitySet="Users">
+      <EndProperty Name="UserType">
+        <ScalarProperty Name="Id" ColumnName="UserTypeKey_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProgramProgramProfile" TypeName="iWorkoutEDM.ProgramProgramProfile" StoreEntitySet="ProgramProfiles">
+      <EndProperty Name="Program">
+        <ScalarProperty Name="Id" ColumnName="ProgramKey_Id" />
+      </EndProperty>
+      <EndProperty Name="ProgramProfile">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ActivityTypeActivity" TypeName="iWorkoutEDM.ActivityTypeActivity" StoreEntitySet="Activities">
+      <EndProperty Name="ActivityType">
+        <ScalarProperty Name="Id" ColumnName="ActivityTypeKey_Id" />
+      </EndProperty>
+      <EndProperty Name="Activity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProfileDetailProgramProfile" TypeName="iWorkoutEDM.ProfileDetailProgramProfile" StoreEntitySet="ProgramProfiles">
+      <EndProperty Name="ProfileDetail">
+        <ScalarProperty Name="Id" ColumnName="ProfileDetailKey_Id" />
+      </EndProperty>
+      <EndProperty Name="ProgramProfile">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserProgram" TypeName="iWorkoutEDM.UserProgram" StoreEntitySet="Programs">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserOwnerKey_Id" />
+      </EndProperty>
+      <EndProperty Name="Program">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ActivityProfileActivity" TypeName="iWorkoutEDM.ActivityProfileActivity" StoreEntitySet="ProfileActivities">
+      <EndProperty Name="Activity">
+        <ScalarProperty Name="Id" ColumnName="ActivityKey_Id" />
+      </EndProperty>
+      <EndProperty Name="ProfileActivity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProfileDetailProfileActivity" TypeName="iWorkoutEDM.ProfileDetailProfileActivity" StoreEntitySet="ProfileActivities">
+      <EndProperty Name="ProfileDetail">
+        <ScalarProperty Name="Id" ColumnName="ProfileDetailKey_Id" />
+      </EndProperty>
+      <EndProperty Name="ProfileActivity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProfileActivityActivityLog" TypeName="iWorkoutEDM.ProfileActivityActivityLog" StoreEntitySet="ActivityLogs">
+      <EndProperty Name="ProfileActivity">
+        <ScalarProperty Name="Id" ColumnName="ProfileActivityKey_Id" />
+      </EndProperty>
+      <EndProperty Name="ActivityLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProgramSubscription" TypeName="iWorkoutEDM.ProgramSubscription" StoreEntitySet="Subscriptions">
+      <EndProperty Name="Program">
+        <ScalarProperty Name="Id" ColumnName="ProgramKey_Id" />
+      </EndProperty>
+      <EndProperty Name="Subscription">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserSubscription" TypeName="iWorkoutEDM.UserSubscription" StoreEntitySet="Subscriptions">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserClientKey_Id" />
+      </EndProperty>
+      <EndProperty Name="Subscription">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SubscriptionActivityLog" TypeName="iWorkoutEDM.SubscriptionActivityLog" StoreEntitySet="ActivityLogs">
+      <EndProperty Name="Subscription">
+        <ScalarProperty Name="Id" ColumnName="SubscriptionKey_Id" />
+      </EndProperty>
+      <EndProperty Name="ActivityLog">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserProfileDetail" TypeName="iWorkoutEDM.UserProfileDetail" StoreEntitySet="ProfileDetails">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserOwnerKey_Id" />
+      </EndProperty>
+      <EndProperty Name="ProfileDetail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserActivity" TypeName="iWorkoutEDM.UserActivity" StoreEntitySet="Activities">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserOwnerKey_Id" />
+      </EndProperty>
+      <EndProperty Name="Activity">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
